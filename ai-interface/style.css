@@ -1,0 +1,241 @@
+// FILE: ai-interface/style.css   GENERATED: 2025-07-17T15:02:00+02:00
+/*
+  === AI PRIME DIRECTIVES (DO NOT REMOVE) ===
+
+  - Never invent, assume, or reference code/features/files not present or not explicitly requested.
+  - Only change what’s specifically requested; no side edits or extras.
+  - Never break or remove any existing, working feature.
+  - Confirm current project state before making changes.
+  - Deliver only full, copy-paste-ready, and instantly reversible code.
+  - If unclear or missing info, STOP and ask—never proceed on assumptions.
+  - Never assume user actions unless confirmed in chat or docs.
+
+  If any directive would be violated, do NOT proceed—STOP and request clarification.
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: #f5f6fa;
+  color: #212326;
+  min-height: 100vh;
+}
+body.dark-mode { background: #23272e; color: #e5e5e5; }
+#container {
+  max-width: 750px;
+  margin: 2em auto;
+  padding: 2em;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 16px #0002;
+}
+body.dark-mode #container {
+  background: #2d323c;
+}
+.logo {
+  font-size: 2em;
+  letter-spacing: .1em;
+  font-weight: 700;
+  color: #0099ff;
+}
+.dark-toggle {
+  float: right;
+  margin-top: -3em;
+  background: #eaf6ff;
+  color: #0099ff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 1px 4px #0099ff22;
+  transition: background 0.2s;
+}
+body.dark-mode .dark-toggle {
+  background: #22252b;
+  color: #fff;
+  box-shadow: 0 1px 4px #0099ff44;
+}
+.statusbar {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+  font-size: .9em;
+}
+.status-ok { color: #2cc36b; }
+.status-missing { color: #ee3030; }
+.action-templates {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+}
+.action-templates button {
+  background: #d4ecff;
+  color: #006bb3;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 16px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+body.dark-mode .action-templates button {
+  background: #1b2330;
+  color: #58aaff;
+}
+label {
+  display: block;
+  margin-top: 18px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+textarea, select {
+  width: 100%;
+  min-height: 40px;
+  font-size: 1.08em;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  padding: 7px 11px;
+  margin-bottom: 12px;
+  background: #f8fbff;
+  resize: vertical;
+  transition: border 0.2s;
+}
+textarea:focus, select:focus {
+  border: 1.5px solid #0099ff;
+  outline: none;
+}
+body.dark-mode textarea, body.dark-mode select {
+  background: #22252b;
+  color: #f3f3f3;
+  border: 1px solid #444;
+}
+.button-row, .test-buttons, .output-controls {
+  margin: 12px 0;
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+.button-row button, .test-buttons button, .output-controls button {
+  background: #0099ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #0099ff11;
+  transition: background 0.2s;
+}
+.button-row button:hover, .test-buttons button:hover, .output-controls button:hover {
+  background: #006bb3;
+}
+body.dark-mode .button-row button,
+body.dark-mode .test-buttons button,
+body.dark-mode .output-controls button {
+  background: #184a74;
+  color: #cce6ff;
+}
+body.dark-mode .button-row button:hover,
+body.dark-mode .test-buttons button:hover,
+body.dark-mode .output-controls button:hover {
+  background: #2899ff;
+  color: #fff;
+}
+.output-render {
+  border: 1px solid #bbb;
+  background: #fafafa;
+  min-height: 80px;
+  padding: 1em;
+  border-radius: 6px;
+  font-family: monospace;
+  margin-bottom: 16px;
+}
+body.dark-mode .output-render {
+  background: #22252b;
+  color: #f3f3f3;
+  border: 1px solid #333;
+}
+.history-list {
+  font-size: .97em;
+  margin-top: 1em;
+  padding-left: 20px;
+}
+.history-list li {
+  cursor: pointer;
+  padding: 2px 0;
+}
+.history-list li:hover {
+  background: #eaf6ff;
+  color: #0099ff;
+}
+body.dark-mode .history-list li:hover {
+  background: #1b2330;
+  color: #58aaff;
+}
+.toast {
+  position: fixed;
+  z-index: 999;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #23272e;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px #0004;
+  font-size: 1.05em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+}
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.spinner {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border: 4px solid #eee;
+  border-top: 4px solid #0099ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@media (max-width: 900px) {
+  #container { padding: 0.7em; }
+  .logo { font-size: 1.3em; }
+}
+/* --- ChatGPT integration styling --- */
+.chatgpt-section {
+  background: #f0f8ff;
+  border-radius: 10px;
+  margin: 20px 0 16px 0;
+  padding: 12px 18px;
+  box-shadow: 0 1px 7px #58aaff33;
+}
+body.dark-mode .chatgpt-section {
+  background: #232d3b;
+}
+#chatgptPrompt, #chatgptResponse {
+  width: 100%;
+  min-height: 45px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  border-radius: 7px;
+  border: 1px solid #99ccff;
+  background: #e9f7ff;
+  color: #184a74;
+  padding: 9px;
+  resize: vertical;
+}
+body.dark-mode #chatgptPrompt,
+body.dark-mode #chatgptResponse {
+  background: #222b37;
+  color: #cce6ff;
+  border: 1px solid #2899ff;
+}
