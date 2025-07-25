@@ -79,6 +79,6 @@ if errorlevel 1 (
     echo Warning: Port 5500 is still in use.
 )
 
-echo Shutdown complete. Closing window in 30 seconds...
-timeout /t 30 >nul
+echo Shutdown complete. Closing window in 15 seconds...
+timeout /t 15 >nul
 exit
