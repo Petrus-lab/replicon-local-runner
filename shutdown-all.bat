@@ -1,7 +1,7 @@
 @echo off
 title Shutting Down Replicon Local AI Runner
 
-echo [1/4] Identifying runner processes on ports 3001 and 5500...
+echo [1/3] Identifying runner processes on ports 3001 and 5500...
 
 :: Initialize variables
 set "PID_3001="
@@ -13,7 +13,7 @@ for /f "tokens=5" %%a in ('netstat -aon ^| find ":3001" ^| find "LISTENING"') do
 :: Find PID for port 5500 (Interface UI)
 for /f "tokens=5" %%a in ('netstat -aon ^| find ":5500" ^| find "LISTENING"') do set "PID_5500=%%a"
 
-echo [2/4] Terminating runner processes...
+echo [2/3] Terminating runner processes...
 
 :: Kill PID on port 3001 if found
 if defined PID_3001 (
@@ -41,28 +41,7 @@ if defined PID_5500 (
     echo No process found on port 5500.
 )
 
-echo [3/4] Closing terminal windows...
-
-:: Close terminal windows for backend and UI
-taskkill /F /FI "WINDOWTITLE eq Replicon Backend" >nul 2>&1
-taskkill /F /FI "WINDOWTITLE eq Administrator: Replicon Backend" >nul 2>&1
-taskkill /F /FI "WINDOWTITLE eq RepliconBackend" >nul 2>&1
-if errorlevel 1 (
-    echo No backend terminal window found or failed to close.
-) else (
-    echo Backend terminal window closed.
-)
-
-taskkill /F /FI "WINDOWTITLE eq Replicon UI" >nul 2>&1
-taskkill /F /FI "WINDOWTITLE eq Administrator: Replicon UI" >nul 2>&1
-taskkill /F /FI "WINDOWTITLE eq RepliconUI" >nul 2>&1
-if errorlevel 1 (
-    echo No UI terminal window found or failed to close.
-) else (
-    echo UI terminal window closed.
-)
-
-echo [4/4] Verifying shutdown...
+echo [3/3] Verifying shutdown...
 
 :: Check if ports are free
 netstat -aon | find ":3001" | find "LISTENING" >nul
@@ -79,6 +58,6 @@ if errorlevel 1 (
     echo Warning: Port 5500 is still in use.
 )
 
-echo Shutdown complete. Closing window in 15 seconds...
-timeout /t 15 >nul
+echo Shutdown complete. Press any key to close...
+pause
 exit
